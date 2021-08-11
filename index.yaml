@@ -3,6 +3,25 @@ entries:
   cnwan-operator:
   - apiVersion: v3
     appVersion: v0.4.0
+    created: "2021-08-11T17:54:35.763990552Z"
+    dependencies:
+    - condition: operator.etcd.install
+      name: etcd
+      repository: https://charts.bitnami.com/bitnami
+      version: '> 6.2.0'
+    description: A Helm chart for CN-WAN Operator.
+    digest: 73aca13764f8435372ec707cdc9f76edf1bb1e44fdb0b8c878cba33c3099c77e
+    home: https://github.com/SunSince90/test-chart
+    kubeVersion: '>= 1.11.0-0'
+    name: cnwan-operator
+    sources:
+    - https://github.com/SunSince90/test-chart
+    type: application
+    urls:
+    - https://github.com/SunSince90/test-chart/releases/download/cnwan-operator-1.0.7/cnwan-operator-1.0.7.tgz
+    version: 1.0.7
+  - apiVersion: v3
+    appVersion: v0.4.0
     created: "2021-08-11T13:39:06.55867348Z"
     dependencies:
     - condition: operator.etcd.install
@@ -115,4 +134,4 @@ entries:
     urls:
     - https://github.com/SunSince90/test-chart/releases/download/cnwan-operator-1.0.0/cnwan-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-11T13:39:06.558703081Z"
+generated: "2021-08-11T17:54:35.764029552Z"
