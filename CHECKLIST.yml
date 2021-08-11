@@ -1,0 +1,5 @@
+paths:
+  "charts/*/values.yaml":
+    - "Have you updated the repo tag?"
+    - "Have you documented the chages?"
+    - "Have you wrote new/updated examples?"
