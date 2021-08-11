@@ -1,0 +1,102 @@
+image:
+  repository: eu.gcr.io/gcp-ibngctopoc-nprd-72084/cnwan-operator
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "remove-dependency"
+
+imagePullSecrets: []
+
+# Operator settings.
+# Please read the documentation to learn more about these values:
+# https://github.com/SunSince90/test-chart/blob/master/docs/configuration.md
+operator:
+
+  # You can set this to allowlist or blocklist.
+  namespaceListPolicy: allowlist
+
+  # List of service annotations to register on the service registry.
+  serviceAnnotations: []
+
+  # The service registry to use.
+  # Set either ServiceDirectory or etcd.
+  serviceRegistry: <service-registry>
+
+  # Set these values in case serviceRegistry is set to ServiceDirectory.
+  googleServiceDirectory:
+
+    # The path of the service account to use. DO NOT set this explicitly,
+    # but rather supply this information during installation with --set-file
+    # as --set-file settings.googleServiceDirectory.serviceAccountPath=/path/to/serviceAccount.json.
+    # Look at the documentation to learn more.
+    serviceAccount: ""
+
+    # The region where to register services in.
+    # You *must* specify this, unless you are running in GKE *and* want to use
+    # the current region, in which case you can just comment this.
+    # defaultRegion: <region>
+
+    # The preject ID where to Service Directory is enabled.
+    # You *must* specify this, unless you are running in GKE *and* want to use
+    # the current region, in which case you can just comment this.
+    # projectID: <project-id>
+
+  # Set these values in case serviceRegistry is set to etcd.
+  etcd:
+
+    # If set to true, an instance of etcd will be installed in the current
+    # namespace.
+    install: false
+
+    # The username to connect as.
+    username: root
+
+    # The password to use for the username above.
+    password: "dem0-pwd"
+
+    # The prefix that all keys will belong to.
+    prefix: "/service-registry"
+
+    # A list of endpoints where your etcd nodes are serving from.
+    # If you set install as true, you can just comment this and it
+    # will be filled automatically.
+    endpoints:
+      - "etcd.etcd:2379"
+
+  # Whether to store cloud metadata as well, such as Network and Sub-network.
+  # Unomment this whole section if you need this feature.
+  # cloudMetadata:
+
+    # Whether to register the current network name (VPC).
+    # Set auto if you are running in GKE to retrieve this value automatically.
+    # Comment if you don't want this.
+    # network: auto
+  
+    # Set auto if you are running in GKE to retrieve this value automatically.
+    # Comment if you don't want this.
+    # subNetwork: auto
+
+# Options about the etcd dependency that will be installed along the operator
+# if operator.etcd.install is true.
+# These are ignored if operator.etcd.install is false, in which case modifying
+# these values will not have any effect.
+etcd:
+
+  # Name of the etcd that will be deployed on the cluster with the operator.
+  fullnameOverride: service-registry
+
+  # The Kubernetes service that will be created.
+  service:
+    # Type of the Kubernetes service to create.
+    # Set this to NodePort or LoadBalancer if you want to be able to access
+    # etcd from outside of the cluster.
+    type: ClusterIP
+
+  # etcd authentication options.
+  auth:
+    # etcd RBAC and security options.
+    # Please do **NOT** modify these values, as these will allow a proper
+    # communication between the operator and etcd. 
+    rbac:
+      enabled: true
+      allowNoneAuthentication: false
+      existingSecret: etcd-root-password
