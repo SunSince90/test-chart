@@ -3,3 +3,5 @@ paths:
     - "Have you updated the repo image tag?"
     - "Have you documented the chages?"
     - "Have you wrote new/updated examples?"
+    - "Have you updated the appVersion?"
+    - "Have you checked copyrights?"
