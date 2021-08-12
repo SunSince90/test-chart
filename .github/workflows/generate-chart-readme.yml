@@ -2,8 +2,6 @@ name: Generate Chart Readme
 
 on:
   pull_request:
-    branches:
-      - master
     paths:
       - 'charts/cnwan-operator/values.yaml'
 
