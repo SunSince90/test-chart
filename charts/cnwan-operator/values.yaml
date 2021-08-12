@@ -9,7 +9,7 @@
 ## @param image.pullSecrets An array of pull secrets to use to authenticate to the repository
 ##
 image:
-  registry:  ghcr.io
+  registry: ghcr.io
   repository: cloudnativesdwan/cnwan-operator
   tag: v0.5.0
   pullPolicy: Always
@@ -22,8 +22,8 @@ image:
 ##
 
 ## Operator settings
-# ref: https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md
-#
+## ref: https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md
+##
 operator:
   ## @param operator.namespaceListPolicy The namespace list policy: allowlist or blocklist
   ##
@@ -98,7 +98,7 @@ operator:
     ## Omit if you don't need this.
     ##
     network: <network>
-  
+
     ## @param operator.cloudMetadata.subNetwork Whether to register the current sub-network name.
     ## Set auto if you are running in GKE to retrieve this value automatically.
     ## Omit if you don't need this.
@@ -108,7 +108,7 @@ operator:
 ## Bitnami/etcd settings
 ## Options about the etcd dependency that will be installed along the operator
 ## if operator.etcd.install is true.
-# #These are ignored if operator.etcd.install is false, in which case modifying
+## These are ignored if operator.etcd.install is false, in which case modifying
 ## these values will not have any effect.
 ## ref: https://github.com/bitnami/charts/tree/master/bitnami/etcd
 ##
