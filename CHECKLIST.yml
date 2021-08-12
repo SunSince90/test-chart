@@ -1,7 +1,6 @@
 paths:
   "charts/*/**":
-    - "Have you updated the repo image tag?"
-    - "Have you documented the chages?"
-    - "Have you wrote new/updated examples?"
-    - "Have you updated the appVersion?"
-    - "Have you checked copyrights?"
+  - "`appVersion` has been updated"
+  - "`version` has been updated"
+  - "`description` has been updated with the changes in this chart/operator version"
+  - "Described any new parameter"
