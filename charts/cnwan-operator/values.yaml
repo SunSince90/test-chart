@@ -53,7 +53,7 @@ operator:
     ## You *must* specify this, unless you are running in GKE *and* want to use
     ## the current region, in which case you can just omit this.
     ##
-    defaultRegion: <region>
+    defaultRegion: <default-region>
 
     ## @param operator.googleServiceDirectory.projectID The preject ID where Service Directory is enabled.
     ## You *must* specify this, unless you are running in GKE *and* want to use

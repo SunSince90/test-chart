@@ -31,10 +31,10 @@ jobs:
       - name: Install readme-generator-for-helm dependencies
         run: cd readme-generator-for-helm && npm install
 
-      - name: Checkout bitnami/charts
+      - name: Checkout to repo
         uses: actions/checkout@v2
         with:
-          path: charts
+          path: test-charts
 
       - name: Get list of files with changes in Pull Request
         id: pr-file-changes
