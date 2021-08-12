@@ -39,7 +39,11 @@ jobs:
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
+        id: create-kind
         if: steps.list-changed.outputs.changed == 'true'
 
+      - name: Create cnwan-operator-system namespace
+        run: kubectl create ns cnwan-operator-system
+
       - name: Run chart-testing (install)
-        run: ct install --namespace cnwan-operator-system --charts cnwan-operator
+        run: ct install --namespace cnwan-operator-system
