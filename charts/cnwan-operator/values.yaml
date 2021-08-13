@@ -1,125 +1,126 @@
-## @section Container image parameters
-## Parameters about the container image to pull and deploy to the cluster.
-## As of now, the repository, pullPolicy, imagePullSecrets and tag can be specified.
-
-## @param image.registry The registry where to pull the image, e.g. ghcr or docker.io
-## @param image.repository The repository inside the registry where to pull the image
-## @param image.tag The tag for the image
-## @param image.pullPolicy The pull policy for the image
-## @param image.pullSecrets An array of pull secrets to use to authenticate to the repository
-##
 image:
+  # image.registry -- The registry where to get the container image.
   registry: ghcr.io
+  # image.repository -- The repository where to get the container image inside
+  # the registry specified above.
   repository: cloudnativesdwan/cnwan-operator
+  # image.tag -- The tag for the container image.
+  # @default -- The most recent version will be used.
   tag: v0.5.0
+  # image.pullPolicy -- The `pullPolicy` for this container image.
   pullPolicy: Always
+  # image.pullSecrets -- Secrets to use to pull the image, in case the
+  # provided repository is private.
+  # @default -- The default repository is public, so no secret will be needed.
   pullSecrets: []
 
 
-## @section Operator settings
-## Parameters to modify the behavior of the operator and deploy its settings.
-## ref: https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/README.md#documentation
-##
-
-## Operator settings
-## ref: https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md
-##
 operator:
-  ## @param operator.namespaceListPolicy The namespace list policy: allowlist or blocklist
-  ##
+  # operator.namespaceListPolicy -- The namespace list policy. Must be either
+  # `allowlist` or `blocklist`.
+  # [Learn more here](https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md)
   namespaceListPolicy: allowlist
 
-  ## @param operator.serviceAnnotations The annotations to look for in a service
-  ##
+  # operator.serviceAnnotations -- A list of service annotations that must be watched.
+  # **An error will occur if this is empty.**
+  # [Learn more here](https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md)
+  # @default -- **At least one item must be provided.**
   serviceAnnotations: []
 
-  ## @param operator.serviceRegistry The service registry to use: etcd or gcpServiceDirectory
-  ##
+  # operator.serviceRegistry -- The service registry to use to register your resources.
+  # @default -- Required: will throw an error if not provided or invalid.
   serviceRegistry: <service-registry>
 
-  ## Google Service Directory settings
-  ## ref: https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/gcp_service_directory/configure_with_operator.md
-  ##
+  # operator.googleServiceDirectory -- Options about service directory. Will be
+  # ignored if `operator.serviceRegistry` is not `gcpServiceDirectory`.
+  # @default -- Read each value below.
   googleServiceDirectory:
 
-    ## @param operator.googleServiceDirectory.serviceAccount The path to the service account to use to
-    ## authenticate to GCP. **DO NOT** set this explicitly, but rather supply this information during
-    ## installation with --set-file, e.g. `--set-file
-    ## settings.googleServiceDirectory.serviceAccountPath=/path/to/serviceAccount.json` .
-    ##
+    # operator.googleServiceDirectory.serviceAccount -- The path to the service
+    # account to use to authenticate to GCP. **DO NOT** set this explicitly,
+    # but rather supply this information during installation with `--set-file`.
+    # See [Examples](#examples) section.
+    # @default -- **DO NOT** set explicitly: see [Examples](#examples).
     serviceAccount: ""
 
-    ## @param operator.googleServiceDirectory.defaultRegion The default region to use for Service Directory.
-    ## You *must* specify this, unless you are running in GKE *and* want to use
-    ## the current region, in which case you can just omit this.
-    ##
+    # operator.googleServiceDirectory.defaultRegion --  The default region to
+    # use for Service Directory. You *must* specify this, unless you are
+    # running in GKE *and* want to use the current region, in which case you
+    # can just omit this.
+    # @default -- If not provided, will be omitted from settings.
     defaultRegion: <default-region>
 
-    ## @param operator.googleServiceDirectory.projectID The preject ID where Service Directory is enabled.
-    ## You *must* specify this, unless you are running in GKE *and* want to use
-    ## the current region, in which case you can just comment this.
-    ##
+    # operator.googleServiceDirectory.projectID --  The GCP project ID to
+    # use for Service Directory. You *must* specify this, unless you are
+    # running in GKE *and* want to use the current project, in which case you
+    # can just omit this.
+    # @default -- If not provided, will be omitted from settings.
     projectID: <project-id>
 
-  ## etcd settings
-  ## ref: https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/etcd/operator_configuration.md
-  ##
+  # operator.etcd -- Options about etcd.
+  # @default -- Read each value below.
   etcd:
 
-    ## @param operator.etcd.install Whether to install etcd in the current namespace.
-    ## Set this to false or omit this if you plan to install it yourself or already have it running somewhere.
-    ##
+    # operator.etcd.install -- Whether to install etcd in the current namespace.
+    # Set this to false or omit this if you plan to install it yourself or
+    # already have it running somewhere.
     install: false
 
-    ## @param operator.etcd.username The username to connect as
-    ##
+    # operator.etcd.username -- The username to connect as.
     username: root
 
-    ## @param operator.etcd.password The password to use for the username above
-    ##
+    # operator.etcd.username -- The password to use for the username provided
+    # in `operator.etcd.username`.
     password: "dem0-pwd"
 
-    ## @param operator.etcd.prefix The prefix that all keys will share
-    ##
+    # operator.etcd.prefix -- The prefix that all keys will share.
     prefix: "/service-registry"
 
-    ## @param operator.etcd.endpoints A list of endpoints where your etcd nodes are serving from.
-    ## If `operator.etcd.install is true, this will be filled automatically.
-    ##
+    # operator.etcd.endpoints -- A list of endpoints where your etcd nodes are
+    # serving from.
+    # @default -- If `operator.etcd.install` is true, this will be filled
+    # automatically, otherwise it will be `["etcd.etcd:2379"]`.
     endpoints:
       - "etcd.etcd:2379"
 
-  ## Cloud metadata settings
-  ## ref: https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md#cloud-metadata
-  ##
   cloudMetadata:
-    ## @param operator.cloudMetadata.network Whether to register the current network name (VPC).
-    ## Set auto if you are running in GKE to retrieve this value automatically.
-    ## Omit if you don't need this.
-    ##
+    # operator.cloudMetadata.network -- Whether to register the current
+    # network name (VPC) among a service's metadata.
+    # Set auto if you are running in GKE to retrieve this value automatically.
+    # Omit if you don't need this.
+    # @default -- If empty it will be omitted from settings.
     network: <network>
 
-    ## @param operator.cloudMetadata.subNetwork Whether to register the current sub-network name.
-    ## Set auto if you are running in GKE to retrieve this value automatically.
-    ## Omit if you don't need this.
-    ##
+    # operator.cloudMetadata.subNetwork -- Whether to register the current
+    # sub-network name among a service's metadata.
+    # Set auto if you are running in GKE to retrieve this value automatically.
+    # Omit if you don't need this.
+    # @default -- If empty it will be omitted from settings.
     subNetwork: <sub-network>
 
-## Bitnami/etcd settings
-## Options about the etcd dependency that will be installed along the operator
-## if operator.etcd.install is true.
-## These are ignored if operator.etcd.install is false, in which case modifying
-## these values will not have any effect.
-## ref: https://github.com/bitnami/charts/tree/master/bitnami/etcd
-##
+# etcd -- Options about the etcd to install along with the operator, in case
+# `operator.etcd.install` is true.
+# @default -- See each value below.
 etcd:
+  # etcd.fullnameOverride -- The name to give to the etcd installation if
+  # `operator.etcd.install` is true.
   fullnameOverride: service-registry
 
   service:
+    # etcd.service.type -- The Kubernetes service type to use to expose the
+    # etcd installation.
     type: ClusterIP
 
   auth:
     rbac:
+      # etcd.auth.rbac.enabled -- Whether to enable RBAC for etcd.
       enabled: true
+      # etcd.auth.rbac.allowNoneAuthentication -- Whether to allow connections
+      # to etcd as an unauthenticated user.
       allowNoneAuthentication: false
+      # etcd.auth.rbac.existingSecret -- The name of the existing secret on
+      # your cluster where to get the root password. Please **do not** modify
+      # unless you know what you are doing.
+      # @default -- The secret will be automatically deployed by the chart and
+      # this value will be created internally.
       existingSecret: etcd-root-password
