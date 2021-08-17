@@ -28,6 +28,7 @@ operator:
   serviceAnnotations: []
 
   # operator.serviceRegistry -- The service registry to use to register your resources.
+  # Must be either `etcd` or `ServiceDirectory`.
   # @default -- Required: will throw an error if not provided or invalid.
   serviceRegistry: <service-registry>
 
