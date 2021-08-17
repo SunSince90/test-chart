@@ -49,14 +49,14 @@ operator:
     # running in GKE *and* want to use the current region, in which case you
     # can just omit this.
     # @default -- If not provided, will be omitted from settings.
-    defaultRegion: <default-region>
+    defaultRegion: ""
 
     # operator.googleServiceDirectory.projectID --  The GCP project ID to
     # use for Service Directory. You *must* specify this, unless you are
     # running in GKE *and* want to use the current project, in which case you
     # can just omit this.
     # @default -- If not provided, will be omitted from settings.
-    projectID: <project-id>
+    projectID: ""
 
   # operator.etcd -- Options about etcd.
   # @default -- Read each value below.
@@ -90,14 +90,14 @@ operator:
     # Set auto if you are running in GKE to retrieve this value automatically.
     # Omit if you don't need this.
     # @default -- If empty it will be omitted from settings.
-    network: <network>
+    network: ""
 
     # operator.cloudMetadata.subNetwork -- Whether to register the current
     # sub-network name among a service's metadata.
     # Set auto if you are running in GKE to retrieve this value automatically.
     # Omit if you don't need this.
     # @default -- If empty it will be omitted from settings.
-    subNetwork: <sub-network>
+    subNetwork: ""
 
 # etcd -- Options about the etcd to install along with the operator, in case
 # `operator.etcd.install` is true.
