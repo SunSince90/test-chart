@@ -3,6 +3,35 @@ entries:
   cnwan-operator:
   - apiVersion: v2
     appVersion: v0.5.0
+    created: "2021-08-17T13:19:31.841049029Z"
+    dependencies:
+    - condition: operator.etcd.install
+      name: etcd
+      repository: https://charts.bitnami.com/bitnami
+      version: '> 6.2.0'
+    description: 'Register and manage your Kubernetes Services to a Service Registry. '
+    digest: 9e14f568b254ae9aaceb6fb4c0ea2a38f890d8590a9eded44b6445eb1e889946
+    home: https://github.com/CloudNativeSDWAN/cnwan-operator
+    icon: https://avatars.githubusercontent.com/u/66446392?s=200&v=4
+    keywords:
+    - cluster
+    - sd-wan
+    - networking
+    - service-registry
+    kubeVersion: '>= 1.11.0-0'
+    maintainers:
+    - email: contact@cisco.com
+      name: CloudNativeSDWAN
+      url: https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/OWNERS.md
+    name: cnwan-operator
+    sources:
+    - https://github.com/CloudNativeSDWAN/cnwan-operator
+    type: application
+    urls:
+    - https://github.com/SunSince90/test-chart/releases/download/cnwan-operator-1.0.15/cnwan-operator-1.0.15.tgz
+    version: 1.0.15
+  - apiVersion: v2
+    appVersion: v0.5.0
     created: "2021-08-17T12:50:43.74072102Z"
     dependencies:
     - condition: operator.etcd.install
@@ -337,4 +366,4 @@ entries:
     urls:
     - https://github.com/SunSince90/test-chart/releases/download/cnwan-operator-1.0.0/cnwan-operator-1.0.0.tgz
     version: 1.0.0
-generated: "2021-08-17T12:50:43.740818921Z"
+generated: "2021-08-17T13:19:31.84121504Z"
