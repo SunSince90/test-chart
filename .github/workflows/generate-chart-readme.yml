@@ -3,7 +3,9 @@ name: Generate Chart Readme
 on:
   pull_request:
     paths:
-      - 'charts/cnwan-operator/values.yaml'
+      - "charts/cnwan-operator/values.yaml"
+      - "charts/cnwan-operator/Chart.yaml"
+      - "charts/cnwan-operator/README.md.gotmpl"
 
 jobs:
   generate-chart-readme:
