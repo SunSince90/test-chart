@@ -50,22 +50,28 @@ data:
         {{- if eq (lower .Values.operator.serviceRegistry) "servicedirectory" }}
         {{- if or (.Values.operator.googleServiceDirectory.defaultRegion) (.Values.operator.googleServiceDirectory.projectID) }}
         gcpServiceDirectory:
-          {{- if .Values.operator.googleServiceDirectory.defaultRegion }}
+          {{- if and (.Values.operator.googleServiceDirectory.defaultRegion) (ne .Values.operator.googleServiceDirectory.defaultRegion "<default-region>") }}
           defaultRegion: {{ .Values.operator.googleServiceDirectory.defaultRegion }}
           {{- end }}
-          {{- if .Values.operator.googleServiceDirectory.projectID }}
+          {{- if and (.Values.operator.googleServiceDirectory.projectID) (ne .Values.operator.googleServiceDirectory.projectID "<project-id>") }}
           projectID: {{ .Values.operator.googleServiceDirectory.projectID }}
           {{- end }}
         {{- else }}
         gcpServiceDirectory: {}
         {{- end }}
         {{- end }}
-        {{- if .Values.operator.cloudMetadata }}
+        {{- if and
+          (.Values.operator.cloudMetadata)
+          (or
+            (and (.Values.operator.cloudMetadata.network) (ne .Values.operator.cloudMetadata.network "<network>") )
+            (and (.Values.operator.cloudMetadata.subNetwork) (ne .Values.operator.cloudMetadata.subNetwork "<sub-network>") )
+          )
+        }}
         cloudMetadata:
-          {{- if .Values.operator.cloudMetadata.network }}
+          {{- if and (.Values.operator.cloudMetadata.network) (ne .Values.operator.cloudMetadata.network "<network>") }}
           network: {{ .Values.operator.cloudMetadata.network }}
           {{- end }}
-          {{- if .Values.operator.cloudMetadata.subNetwork }}
+          {{- if and (.Values.operator.cloudMetadata.subNetwork) (.Values.operator.cloudMetadata.subNetwork "<sub-network>") }}
           subNetwork: {{ .Values.operator.cloudMetadata.subNetwork }}
           {{- end }}
         {{- end }}
