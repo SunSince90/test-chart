@@ -1,6 +1,6 @@
 # CN-WAN Operator Helm Chart
 
-![Version: 1.0.11](https://img.shields.io/badge/Version-1.0.11-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.5.0](https://img.shields.io/badge/AppVersion-v0.5.0-informational?style=flat-square)
+![Version: 1.0.12](https://img.shields.io/badge/Version-1.0.12-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.5.0](https://img.shields.io/badge/AppVersion-v0.5.0-informational?style=flat-square)
 
 Register and manage your Kubernetes Services to a Service Registry.
 
@@ -55,7 +55,7 @@ Finally, look at [examples](#examples) to learn more.
 | image.pullSecrets | list | The default repository is public, so no secret will be needed. | Secrets to use to pull the image, in case the provided repository is private. |
 | image.registry | string | `"ghcr.io"` | The registry where to get the container image. |
 | image.repository | string | `"cloudnativesdwan/cnwan-operator"` | The repository where to get the container image inside the registry specified above. |
-| image.tag | string | The most recent version will be used. | The tag for the container image. |
+| image.tag | string | The most recent version will be used. | The tag for the container image. AAAAAAAAAAAAAAAAA |
 | operator.cloudMetadata.network | string | If empty it will be omitted from settings. | Whether to register the current network name (VPC) among a service's metadata. Set auto if you are running in GKE to retrieve this value automatically. Omit if you don't need this. |
 | operator.cloudMetadata.subNetwork | string | If empty it will be omitted from settings. | Whether to register the current sub-network name among a service's metadata. Set auto if you are running in GKE to retrieve this value automatically. Omit if you don't need this. |
 | operator.etcd | object | Read each value below. | Options about etcd. |
