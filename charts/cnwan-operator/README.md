@@ -1,6 +1,6 @@
 # CN-WAN Operator Helm Chart
 
-![Version: 1.0.15](https://img.shields.io/badge/Version-1.0.15-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.5.0](https://img.shields.io/badge/AppVersion-v0.5.0-informational?style=flat-square)
+![Version: 1.0.16](https://img.shields.io/badge/Version-1.0.16-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.5.0](https://img.shields.io/badge/AppVersion-v0.5.0-informational?style=flat-square)
 
 Register and manage your Kubernetes Services to a Service Registry.
 
@@ -81,6 +81,10 @@ operator and configure it to use a certain service registry.
 Refer to the [values table](#values-table) above for the meaning of the values
 that have been set as `--set` or `--set-file`.
 
+Please note that you can group all settings together with one `--set` only by
+separating all values with commas, but in the following examples we use
+`--set` for each separate setting to make the example more reader-friendly.
+
 ### Usage with Google Service Directory
 
 This will deploy the operator to your cluster and will configure it to use
@@ -134,6 +138,7 @@ above if you want to add other values and to know what they mean.
 To deploy the operator and etcd together, you can run
 
 ```bash
+kubectl create ns cnwan-operator-system
 helm install cnwan-operator CloudNativeSDWAN/cnwan-operator \
 --set operator.serviceAnnotations="{traffic-profile}" \
 --set operator.serviceRegistry=etcd \
@@ -150,15 +155,17 @@ watch kubectl get pods -n cnwan-operator-system
 #### Installing the operator without etcd
 
 This is the way to install the operator in case you have etcd already running
-somewhere or you just want to install it and managing
+somewhere or you just want to install it and managing. Let's suppose your etcd
+installation can be reached via DNS name `my-etcd.etcd` on port `8080` and the
+password is `my-PWD`.
 
 ```bash
 kubectl create ns cnwan-operator-system
-
-helm install my-operator sunsince90/cnwan-operator \
+helm install cnwan-operator CloudNativeSDWAN/cnwan-operator \
 --set operator.serviceAnnotations="{traffic-profile}" \
 --set operator.serviceRegistry=etcd \
 --set operator.etcd.endpoints="{my-etcd.etcd:8080}" \
+--set operator.etcd.password="my-PWD" \
 -n cnwan-operator-system
 ```
 
