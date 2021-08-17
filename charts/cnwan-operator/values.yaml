@@ -4,7 +4,7 @@ image:
   # image.repository -- The repository where to get the container image inside
   # the registry specified above.
   repository: cloudnativesdwan/cnwan-operator
-  # image.tag -- The tag for the container image.
+  # image.tag -- The tag for the container image. AAAAAAAAAAAAAAAAA
   # @default -- The most recent version will be used.
   tag: v0.5.0
   # image.pullPolicy -- The `pullPolicy` for this container image.
