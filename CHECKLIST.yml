@@ -1,0 +1,6 @@
+paths:
+  "charts/*/**":
+  - "`appVersion` has been updated"
+  - "`version` has been updated"
+  - "`description` has been updated with the changes in this chart/operator version"
+  - "Described any new parameter"
