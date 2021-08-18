@@ -43,14 +43,27 @@ jobs:
       - name: Generate Readme
         run: ./readme-generator/cmd/helm-docs/helm-docs ./charts/cnwan-operator
 
-      - run: pwd
-      - run: ls
-      - run: tree .
+      # - run: pwd
+      # - run: ls
+      # - run: tree .
 
       - run: |
           cd charts
-          git config user.email actions@github.com
-          git config user.name "Readme generator"
+          author=$(git log -1 --pretty=format:'%an')
+          email=$(git log -1 --pretty=format:'%ae')
+          message=$(git log -1 --pretty=%B)
+          git config user.email $email
+          git config user.name $author
           git add ./charts/cnwan-operator/README.md
-          git diff-index --quiet HEAD || git commit -m "Generate README.md" -s
+          git diff-index --quiet HEAD || git commit --amend -s -m "$message"
+          # git diff-index --quiet HEAD || git commit -m "Generate README.md" -s
           git push
+
+      # - name: Get commit data
+      #   id: commit-data
+      #   run: |
+      #     cd charts
+      #     echo "::set-output name=AUTHOR_NAME::$(git log -1 --pretty=format:'%an')"
+      #     echo "::set-output name=AUTHOR_EMAIL::$(git log -1 --pretty=format:'%ae')"
+
+

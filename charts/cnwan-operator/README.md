@@ -70,6 +70,7 @@ Finally, look at [examples](#examples) to learn more.
 | operator.namespaceListPolicy | string | `"allowlist"` | The namespace list policy. Must be either `allowlist` or `blocklist`. [Learn more here](https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md) |
 | operator.serviceAnnotations | list | **At least one item must be provided.** | A list of service annotations that must be watched. **An error will occur if this is empty.** [Learn more here](https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md) |
 | operator.serviceRegistry | string | Required: will throw an error if not provided or invalid. | The service registry to use to register your resources. Must be either `etcd` or `ServiceDirectory`. |
+| operator.testValue | string | `"test"` | A value to show some test. |
 
 ***
 
