@@ -19,26 +19,13 @@ jobs:
           git config user.email cnwan@cisco.com
           git config user.name CN-WAN Bot
 
-      # - name: Install Helm
-      #   uses: azure/setup-helm@v1
-      #   with:
-      #     version: latest
-
-      # - name: Run chart-releaser
-      #   uses: helm/chart-releaser-action@v1.2.1
-      #   env:
-      #     CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      # - uses: actions/checkout@v2
-      - name: Publish Helm chart
-        uses: stefanprodan/helm-gh-pages@master
+      - name: Install Helm
+        uses: azure/setup-helm@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: master
-          # charts_dir: chart
-          # charts_url: https://charts.fluxcd.io
-          # owner: fluxcd
-          # repository: charts
-          # branch: gh-pages
-          # target_dir: charts
-          # commit_username: johndoe
-          # commit_email: johndoe@example.com
+          version: latest
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.2.1
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
