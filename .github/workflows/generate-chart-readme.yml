@@ -1,7 +1,9 @@
 name: Generate Chart Readme
 
 on:
-  pull_request:
+  push:
+    branches:
+      - master
     paths:
       - "charts/cnwan-operator/values.yaml"
       - "charts/cnwan-operator/Chart.yaml"
@@ -49,13 +51,13 @@ jobs:
 
       - run: |
           cd charts
-          author=$(git log -1 --pretty=format:'%an')
-          email=$(git log -1 --pretty=format:'%ae')
-          message=$(git log -1 --pretty=%B)
-          git config user.email $email
-          git config user.name $author
+          # author=$(git log -1 --pretty=format:'%an')
+          # email=$(git log -1 --pretty=format:'%ae')
+          # message=$(git log -1 --pretty=%B)
+          git config user.email cnwan@cisco.com
+          git config user.name CN-WAN Bot
           git add ./charts/cnwan-operator/README.md
-          git diff-index --quiet HEAD || git commit --amend -s -m "$message"
+          git commit -s -m "Generate chart readme"
           # git diff-index --quiet HEAD || git commit -m "Generate README.md" -s
           git push
 
