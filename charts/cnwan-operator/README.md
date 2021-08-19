@@ -1,6 +1,6 @@
 # CN-WAN Operator Helm Chart
 
-![Version: 1.0.16](https://img.shields.io/badge/Version-1.0.16-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.5.0](https://img.shields.io/badge/AppVersion-v0.5.0-informational?style=flat-square)
+![Version: 1.0.17](https://img.shields.io/badge/Version-1.0.17-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.5.0](https://img.shields.io/badge/AppVersion-v0.5.0-informational?style=flat-square)
 
 Register and manage your Kubernetes Services to a Service Registry.
 
@@ -70,7 +70,6 @@ Finally, look at [examples](#examples) to learn more.
 | operator.namespaceListPolicy | string | `"allowlist"` | The namespace list policy. Must be either `allowlist` or `blocklist`. [Learn more here](https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md) |
 | operator.serviceAnnotations | list | **At least one item must be provided.** | A list of service annotations that must be watched. **An error will occur if this is empty.** [Learn more here](https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md) |
 | operator.serviceRegistry | string | Required: will throw an error if not provided or invalid. | The service registry to use to register your resources. Must be either `etcd` or `ServiceDirectory`. |
-| operator.testValue | string | `"test"` | A value to show some test. |
 
 ***
 
