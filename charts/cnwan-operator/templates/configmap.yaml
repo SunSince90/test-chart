@@ -60,10 +60,7 @@ data:
         gcpServiceDirectory: {}
         {{- end }}
         {{- end }}
-        {{- if and
-          (.Values.operator.cloudMetadata)
-          (or (.Values.operator.cloudMetadata.network) (.Values.operator.cloudMetadata.subNetwork) )
-        }}
+        {{- if and (.Values.operator.cloudMetadata) (or (.Values.operator.cloudMetadata.network) (.Values.operator.cloudMetadata.subNetwork) ) }}
         cloudMetadata:
           {{- if .Values.operator.cloudMetadata.network }}
           network: {{ .Values.operator.cloudMetadata.network }}
