@@ -30,7 +30,7 @@ operator:
   # operator.serviceRegistry -- The service registry to use to register your resources.
   # Must be either `etcd` or `ServiceDirectory`.
   # @default -- Required: will throw an error if not provided or invalid.
-  serviceRegistry: <service-registry>
+  serviceRegistry: ""
 
   # operator.googleServiceDirectory -- Options about service directory. Will be
   # ignored if `operator.serviceRegistry` is not `gcpServiceDirectory`.
