@@ -28,4 +28,26 @@ jobs:
         uses: helm/chart-releaser-action@v1.2.1
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
+  update-index:
+    runs-on: ubuntu-latest
+    needs: release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: charts-pages
+      - name: Copy index.yaml
+        run: cp charts-pages/index.yaml index.yaml
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: main
+      - name: Move index.yaml
+        run: mv index.yaml main/index.yaml
+      - name: Commit index.yaml
+        run: |
+          cd main
+          git add index.yaml
+          git commit -s -m "Generate index.yaml"
+          git push
