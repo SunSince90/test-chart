@@ -33,3 +33,5 @@ jobs:
 
       - name: Lint
         run: ct lint
+        if: steps.list-changed.outputs.changed == 'true'
+
