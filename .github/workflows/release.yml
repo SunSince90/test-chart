@@ -45,6 +45,10 @@ jobs:
           path: main
       - name: Move index.yaml
         run: mv index.yaml main/index.yaml
+      - name: Configure Git
+        run: |
+          git config user.email cnwan@cisco.com
+          git config user.name CN-WAN Bot
       - name: Commit index.yaml
         run: |
           cd main
