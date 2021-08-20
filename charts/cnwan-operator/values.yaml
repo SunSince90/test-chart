@@ -21,6 +21,11 @@ operator:
   # [Learn more here](https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md)
   namespaceListPolicy: allowlist
 
+  # operator.testVal -- The namespace list policy. Must be either
+  # `allowlist` or `blocklist`.
+  # [Learn more here](https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md)
+  testVal: "asdasdas"
+
   # operator.serviceAnnotations -- A list of service annotations that must be watched.
   # **An error will occur if this is empty.**
   # [Learn more here](https://github.com/CloudNativeSDWAN/cnwan-operator/blob/master/docs/configuration.md)
