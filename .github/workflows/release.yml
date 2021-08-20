@@ -47,11 +47,11 @@ jobs:
         run: mv index.yaml main/index.yaml
       - name: Configure Git
         run: |
+          cd main
           git config user.email cnwan@cisco.com
           git config user.name CN-WAN Bot
       - name: Commit index.yaml
         run: |
-          cd main
           git add index.yaml
           git commit -s -m "Generate index.yaml"
           git push
