@@ -57,6 +57,7 @@ jobs:
           git config user.email cnwan@cisco.com
           git config user.name CN-WAN Bot
           git add ./charts/cnwan-operator/README.md
+          git pull
           git commit -s -m "Generate chart readme"
           # git diff-index --quiet HEAD || git commit -m "Generate README.md" -s
           git push
