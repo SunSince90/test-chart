@@ -41,6 +41,8 @@ jobs:
 
       - name: Create cnwan-operator-system namespace
         run: kubectl create ns cnwan-operator-system
+        if: steps.list-changed.outputs.changed == 'true'
 
       - name: Run chart-testing (install)
         run: ct install --namespace cnwan-operator-system
+        if: steps.list-changed.outputs.changed == 'true'
