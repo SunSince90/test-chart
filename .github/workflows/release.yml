@@ -52,6 +52,7 @@ jobs:
           git config user.name CN-WAN Bot
       - name: Commit index.yaml
         run: |
+          cd main
           git add index.yaml
           git commit -s -m "Generate index.yaml"
           git push
